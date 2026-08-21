@@ -1,8 +1,8 @@
 import { test, expect } from '@playwright/test';
 
 test("Positive: Login and add item to cart successfully", async ({ page }) => {
-  // Step 1: Navigate to https://www.saucedemo.com/
-  await page.goto('https://www.saucedemo.com/');
+  // Step 1: Navigate to {{URL_SAUCEDEMO}}
+  await page.goto('{{URL_SAUCEDEMO}}');
   // Step 2: Fill the username field with 'standard_user'
   await page.locator('[data-test="username"]').fill('standard_user');
   // Step 3: Fill the password field with 'secret_sauce'
@@ -22,9 +22,13 @@ test("Positive: Login and add item to cart successfully", async ({ page }) => {
   // Step 10: Click on "Add to Cart" for the "Test.allthethings() T-Shirt (Red)".
   await page.locator('[data-test="add-to-cart-test.allthethings()-t-shirt-(red)"]').click();
   // Step 11: Select the option "Z to A" from the product sorting dropdown.
-  await page.locator('[data-test="product-sort-container"]').selectOption('za');
+  await page.locator('[data-test="product-sort-container"]').selectOption(['Name (Z to A)']);
   // Step 12: Click on "shopping cart".
   await page.locator('[data-test="shopping-cart-link"]').click();
   // Step 13: Click on "Checkout".
   await page.locator('[data-test="checkout"]').click();
+  // Step 14: Fill the username field with standard_user
+  await page.locator('[data-test="username"]').fill('standard_user');
+  // Step 15: Fill the password field with secret_sauce
+  await page.locator('[data-test="password"]').fill('secret_sauce');
 });
